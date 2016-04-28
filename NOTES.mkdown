@@ -1,0 +1,18 @@
+Users:
+  - Username
+  - Email
+  - Password
+
+
+
+Event:
+  - Title
+  - DateTime
+  - Attendees (num)
+
+
+
+Tasks:
+  - Title
+  - Description
+  - TimeRange
