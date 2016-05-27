@@ -1,0 +1,7 @@
+<h3><button><%= link_to "Create New Event", new_event_path %></button></h1><hr>
+<% @events.each do |event| %>
+  <h3><%= link_to(event.title, event_path(event)) %></h3>
+  <p><%= event.description %></p>
+  <p>Participants: <%= event.attendees || 'none' %></p>
+  <hr>
+<% end %>

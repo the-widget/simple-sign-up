@@ -5,11 +5,52 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 </head>
 <body>
+  
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href=<%= root_path %> >Simple Sign Up</a>
+      </div>
+      <div id="navbar" >
+        <ul class="nav navbar-nav">
+          <li><a href= <%= root_path %> >Home</a></li>
+          <!-- <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li> -->
+          <li><%= link_to("Events", event_index_path)%></li>
+          <li><%= link_to("Sign Up", new_user_registration_path) if !logged_in?  %></li>
+          <li><%= logged_in? ? link_to("Sign Out", destroy_user_session_path, :method => :delete) : link_to("Sign In", new_user_session_path) %></li>
+          <li><%= logged_in? ? link_to("User Settings", edit_user_registration_path) : "" %></li>
+
+          
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </nav>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
-<%= yield %>
+  <div class="container theme-showcase">
+    <div class="jumbotron col-md-12"> 
+
+        <%= yield %>
+    </div>
+    <p class="notice"><%= logged_in? ? "Signed in as " + current_user.email : "" %></p>
+  </div>
+
 
 </body>
 </html>
+
+
+
+
+

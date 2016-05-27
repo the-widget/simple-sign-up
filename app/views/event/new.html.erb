@@ -1,0 +1,14 @@
+<h1>Create Event</h1>
+<% if logged_in? %>
+  <%= form_for @event, url: {action: "create", method: "post"} do |p| %>
+    <%= p.label :name %> <br>
+    <%= p.text_field :title %> <br>
+    <%= p.label :description %> <br>
+    <%= p.text_area :description %> <br>
+    <%= p.label :date %> <br>
+    <%= p.text_field :date_time %> <br>
+    <%= p.submit %>
+  <% end %>
+<% else %>
+  <p>Please login to create Events</p>
+<% end %>
