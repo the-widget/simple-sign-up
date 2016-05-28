@@ -1,15 +1,45 @@
 <div class='text-center'>
   <h1>Create Event</h1>
 </div>
+<% if @event.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@event.errors.count, "error") %>
+      prohibited this event from being saved:
+    </h2>
+ 
+    <ul>
+    <% @event.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 <% if logged_in? %>
-  <%= form_for @event, url: {action: "create", method: "post"} do |p| %>
-    <%= p.label :name %> <br>
-    <%= p.text_field :title %> <br>
-    <%= p.label :description %> <br>
-    <%= p.text_area :description %> <br>
-    <%= p.label :date %> <br>
-    <%= p.text_field :date_time %> <br><br>
-    <%= p.submit %>
+  <%= form_for @event, url: {action: "create", method: "post"} do |f| %>
+    <%= f.label :name %> <br>
+    <%= f.text_field :title %> <br>
+    <%= f.label :description %> <br>
+    <%= f.text_area :description %> <br>
+    <%= f.label :date %> <br>
+    <%= f.text_field :date, "data-provide" => 'datepicker' %> <br>
+    <div class="input-group bootstrap-timepicker timepicker">
+      <%= f.label :start_time %> <br>
+      <%= f.text_field :start_time, "class" => "input-small" %> <br>
+      <%= f.label :end_time %> <br>
+      <%= f.text_field :end_time, "class" => "input-small" %> <br>
+      <script type="text/javascript">
+            $('#event_start_time').timepicker({
+              template: 'dropdown',
+              defaultTime: false
+            });
+            $('#event_end_time').timepicker({
+              template: 'dropdown',
+              defaultTime: false
+            });
+        </script>
+    </div> <br>
+    <%= f.submit %>
   <% end %>
 <% else %>
   <p>Please login to create Events</p>

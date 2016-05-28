@@ -14,8 +14,11 @@ class EventController < ApplicationController
 
   def create
     @event = current_user.events.build(event_params)
-    @event.save
-    redirect_to event_index_path
+    if !@event.save 
+      render 'new'
+    else 
+      redirect_to event_index_path
+    end
   end
 
   def edit

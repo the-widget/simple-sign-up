@@ -1,18 +1,6 @@
-Users:
-  - Username
-  - Email
-  - Password
-
-
-
-Event:
-  - Title
-  - DateTime
-  - Attendees (num)
-
-
-
-Tasks:
-  - Title
-  - Description
-  - TimeRange
+- Set up Validations
+- Include extra information in join model
+- One class level method
+- Allow login from another service
+- Validation errors
+- 

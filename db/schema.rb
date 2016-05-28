@@ -16,7 +16,9 @@ ActiveRecord::Schema.define(version: 20160428150415) do
   create_table "events", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "date_time"
+    t.string   "date"
+    t.string   "start_time"
+    t.string   "end_time"
     t.integer  "attendees"
     t.integer  "user_id"
     t.datetime "created_at",  null: false
@@ -52,7 +54,7 @@ ActiveRecord::Schema.define(version: 20160428150415) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.integer  "role",                   default: 3
+    t.integer  "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
