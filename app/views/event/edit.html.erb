@@ -1,6 +1,6 @@
-<div class='text-center'>
-  <h1>Create Event</h1>
-</div>
+<div class="text-center"> 
+  <h1>Edit Event</h1>
+</div> <hr>
 <% if logged_in? %>
   <%= form_for @event, url: {action: "create", method: "post"} do |p| %>
     <%= p.label :name %> <br>
@@ -12,5 +12,5 @@
     <%= p.submit %>
   <% end %>
 <% else %>
-  <p>Please login to create Events</p>
+  <p>Please login to edit Events</p>
 <% end %>

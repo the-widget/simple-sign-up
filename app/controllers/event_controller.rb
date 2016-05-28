@@ -5,7 +5,7 @@ class EventController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
+    set_event
   end
 
   def new
@@ -18,10 +18,30 @@ class EventController < ApplicationController
     redirect_to event_index_path
   end
 
+  def edit
+    set_event
+  end
+
+  def update
+    set_event
+    @event.update(event_params)
+    redirect_to event_path(@event)
+  end
+
+  def destroy
+    set_event
+    @event.destroy
+    redirect_to event_index_path
+  end
+
   private
 
   def event_params
     params.require(:event).permit(:title, :description, :date_time)
+  end
+
+  def set_event
+    @event = Event.find(params[:id])
   end
 
 

@@ -1,16 +1,21 @@
-<h1><%= @task.title %></h1> <%= link_to("Edit Task", edit_event_task_path) if current_user.admin? %>
-Description: <%= @task.description %> <hr>
-Time Slot: <%= @task.time %> <br>
-Participants:
+<div class="text-center">
+  <h1><%= @task.title %></h1> 
+  <% if organizer_permissions? %>
+    <%= link_to("Delete Task", event_task_path, :method => :delete, data: {:confirm => "Are you sure you want to  delete this task?"}) %> |
+    <%= link_to("Edit Task", edit_event_task_path) if organizer_permissions? %> 
+  <% elsif current_user.member? %>
+    <button><%= link_to("Sign Up For This Task", event_task_path, :method => :patch) %></button>
+  <% end %>
+</div> <hr>
+
+<strong>Description:</strong> <%= @task.description %> <br /> <br>
+<strong>Time Slot:</strong> <%= @task.time %> <br /> <br>
+<strong>Participants:</strong> <br />
 <% @users.each do |user| %>
   <%= user.email %> <br>
 <% end %>
 
 <hr>
-<% if current_user.admin? %>
-  <%= link_to("Delete Task", event_task_path, :method => :delete) %>
-<% elsif current_user.member? %>
-  <button><%= link_to("Sign Up For This Task", event_task_path, :method => :patch) %></button>
-<% end %>
+
 
   

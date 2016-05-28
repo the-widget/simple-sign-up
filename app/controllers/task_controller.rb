@@ -30,7 +30,7 @@ class TaskController < ApplicationController
     set_event
     if current_user.member?
       sign_up
-    elsif current_user.admin?
+    elsif organizer_permissions?
       task.update(task_params)
       redirect_to event_path(@event)
     end

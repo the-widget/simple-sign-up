@@ -43,7 +43,7 @@
 
         <%= yield %>
     </div>
-    <p class="notice"><%= logged_in? ? "Signed in as " + current_user.email : "" %></p>
+    <p class="notice"><%= logged_in? ? "Signed in as " + current_user.email + " " + "(" + current_user.role + ")" : "" %></p>
   </div>
 
 
