@@ -9,7 +9,7 @@
 </div> <hr>
 
 <strong>Description:</strong> <%= @task.description %> <br /> <br>
-<strong>Time Slot:</strong> <%= @task.time %> <br /> <br>
+<strong>Time Slot:</strong> <%= @task.start_time %> - <%= @task.end_time %> <br /> <br>
 <strong>Participants:</strong> <br />
 <% @users.each do |user| %>
   <%= user.email %> <br>

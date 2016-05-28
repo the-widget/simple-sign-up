@@ -12,8 +12,11 @@ class TaskController < ApplicationController
   def create
     set_event
     @task = @event.tasks.build(task_params)
-    @task.save
-    redirect_to event_path(@event)
+    if !@task.save
+      render 'new'
+    else
+      redirect_to event_path(@event)
+    end
   end
 
   def destroy
@@ -50,7 +53,7 @@ class TaskController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :description, :time)
+    params.require(:task).permit(:title, :description, :start_time, :end_time, :workers_required)
   end
 
   def set_event
