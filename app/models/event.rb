@@ -19,4 +19,17 @@ class Event < ActiveRecord::Base
     task.workers_required - task.users.all.count}.sum
   end
 
+  def participants
+    collect = []
+    if self.tasks
+      self.tasks.each do |task|
+        task.users.each do |user|
+          collect << user
+        end
+      end
+    end
+    collect.uniq
+  end
+
+    
 end

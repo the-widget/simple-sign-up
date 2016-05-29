@@ -1,2 +1,2 @@
 - Include extra information in join model
-- One class level method (try event participants) 
+

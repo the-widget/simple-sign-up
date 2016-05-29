@@ -13,15 +13,11 @@
   <p><%= @event.description %></p> <hr>
   <h4>Tasks:</h4>
   <% @event.tasks.each do |task| %>
-    <p><%= link_to task.title, event_task_path(@event, task) %> - <%= task.positions_available || "No More" %> position(s) remaining</p> 
+    <p><%= link_to task.title, event_task_path(@event, task) %> - <%= task.positions_available %> position(s) remaining</p> 
   <% end %> <hr>
 
   <h4>Participants:</p>
-  <% if @event.tasks %>
-    <% @event.tasks.each do |task| %>
-      <% task.users.each do |user| %>
-        <li><p><%=user.email%></p></li>
-      <% end %>
-    <% end %>
+  <% @event.participants.each do |user| %>
+    <li><%= user.name %></li>
   <% end %>
   <hr>
