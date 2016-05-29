@@ -7,14 +7,16 @@ class Event < ActiveRecord::Base
   validates :start_time, :presence => :true
   validates :end_time, :presence => :true
 
-  def self.task_ids
-    collect = []
-    self.all.each do |event|
-      event.tasks.each do |task|
-        collect << task.id 
-      end
+  def task_ids
+    self.tasks.map do |task|
+      task.id 
     end
-    collect
+  end
+
+  def positions_remaining(task_ids)
+    task_ids.map { |id|
+    task = Task.find(id);
+    task.workers_required - task.users.all.count}.sum
   end
 
 end

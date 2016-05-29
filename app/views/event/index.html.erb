@@ -6,7 +6,13 @@
 </div> <hr>
 
 <% @events.each do |event| %>
-  <h3><%= link_to(event.title, event_path(event)) %> - (<%= event.date %>)</h3> 
+  <h3><%= link_to(event.title, event_path(event)) %> - (<%= event.date %>) - 
+  <% if Task.all_positions_filled?(event.task_ids) %>
+    <text class="text-success">All Positions Filled</text></h3>
+  <% else %>
+    <text class="text-danger"><%= event.positions_remaining(event.task_ids) %> Position(s) To Be Filled</text></h3>
+  <% end %>
+
   <p><%= event.description %></p>
   <hr>
 <% end %>
