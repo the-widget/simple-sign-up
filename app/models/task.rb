@@ -8,4 +8,17 @@ class Task < ActiveRecord::Base
   validates :start_time, :presence => :true
   validates :end_time, :presence => :true
   validates :workers_required, :presence => :true
+
+  def self.total_tasks
+    self.all.count
+  end
+
+  def self.all_positions_filled
+    self.all.collect do |task|
+      if task.workers_required == task.users.all.count
+        task.id
+      end
+    end.compact
+  end
+
 end

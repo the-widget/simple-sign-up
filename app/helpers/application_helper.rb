@@ -13,5 +13,9 @@ module ApplicationHelper
   def oauth_login?
     !current_user.provider.nil?
   end
+
+  def spots_to_fill
+    task.workers_required - task.users
+  end
   
 end

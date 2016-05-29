@@ -7,10 +7,10 @@
     <button><%= link_to("Sign Up For This Task", event_task_path, :method => :patch) %></button>
   <% end %>
 </div> <hr>
-
+<strong>Workers Required:</strong> <%= @task.workers_required %> <br> <br>
 <strong>Description:</strong> <%= @task.description %> <br /> <br>
 <strong>Time Slot:</strong> <%= @task.start_time %> - <%= @task.end_time %> <br /> <br>
-<strong>Participants:</strong> <br />
+<strong>Participants: <%= @task.users.all.count %> / <%= @task.workers_required %> </strong> <br />
 <% @users.each do |user| %>
   <%= user.email %> <br>
 <% end %>

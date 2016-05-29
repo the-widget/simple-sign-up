@@ -53,7 +53,7 @@ class TaskController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:title, :description, :start_time, :end_time, :workers_required)
+    params.require(:task).permit(:title, :description, :start_time, :end_time, :workers_required, :id)
   end
 
   def set_event
