@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+   skip_before_action :authenticate_user!
 
   def index
   end
@@ -8,7 +9,7 @@ class HomeController < ApplicationController
       @user = current_user
       render 'devise/registrations/set_role'
     else
-      redirect_to root_path
+      redirect_to event_index_path
     end
   end
 
