@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-   devise_for :users, controllers: { registrations: "users/registrations" }
+  devise_for :users, controllers: { registrations: "users/registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
+  get 'set_role' => 'home#set_role'
   resources :event do 
     resources :task
   end
-
+  
   root to: "home#index"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

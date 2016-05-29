@@ -9,5 +9,9 @@ module ApplicationHelper
       !!current_user.admin? || !!current_user.organizer?
     end
   end
+
+  def oauth_login?
+    !current_user.provider.nil?
+  end
   
 end

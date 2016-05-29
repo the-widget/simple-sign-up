@@ -26,24 +26,30 @@
           <li><%= link_to("Events", event_index_path)%></li>
           <li><%= link_to("Sign Up", new_user_registration_path) if !logged_in?  %></li>
           <li><%= logged_in? ? link_to("Sign Out", destroy_user_session_path, :method => :delete) : link_to("Sign In", new_user_session_path) %></li>
-          <li><%= logged_in? ? link_to("User Settings", edit_user_registration_path) : "" %></li>
+          <li><%= logged_in? && !oauth_login? ? link_to("User Settings", edit_user_registration_path) : "" %></li>
 
           
         </ul>
       </div><!--/.nav-collapse -->
     </div>
   </nav>
-  <% flash.each do |key, value| %>
-    <div class="alert alert-<%= key %>"><%= value %></div>
-  <% end %>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <div class="container theme-showcase">
-    <div class="jumbotron col-md-12"> 
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>"><%= value %></div>
+    <% end %>
+    
 
+  <div class="container theme-showcase">
+
+    <div class="jumbotron col-md-12"> 
+    
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <% if logged_in? && current_user.role.nil? %>
+        <p><%= link_to "* Please set your Role to proceed", set_role_path, class: 'alert' %></p>
+      <% end %>
         <%= yield %>
     </div>
-    <p class="notice"><%= logged_in? ? "Signed in as " + current_user.email + " " + "(" + current_user.role + ")" : "" %></p>
+    <p class="notice"><%= logged_in? ? "Signed in as " + current_user.email : "" %></p>
   </div>
 
 

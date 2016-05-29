@@ -1,0 +1,17 @@
+<h1>Set Role</h1>
+
+<%= form_for(@user, url: user_registration_path(@user), html: { method: :patch }) do |f| %>
+
+  <div class="field">
+    <input id="user_role_admin" name="user[role]" type="radio" value="organizer">
+    <label for="user_role_admin">Organizer</label>
+    <input id="user_role_user" name="user[role]" type="radio" value="member">
+    <label for="user_role_user">Volunteer/Worker</label>
+    <input id="user_role_user" name="user[role]" type="radio" value="guest">
+    <label for="user_role_user">Guest</label>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Complete Sign Up" %>
+  </div>
+<% end %>

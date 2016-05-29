@@ -27,6 +27,11 @@ gem 'bootstrap'
 gem 'autoprefixer-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-timepicker-rails'
+gem 'bootstrap-social-rails'
+gem 'therubyracer'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'font-awesome-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

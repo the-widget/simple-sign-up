@@ -3,7 +3,7 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, autofocus: true, placeholder: "email@provider.com" %>
   </div>
 
   <div class="field">
@@ -18,9 +18,16 @@
     </div>
   <% end -%>
 
-  <div class="actions">
+  <div class="field actions" style="margin: 10px 0px 0px 0px;">
     <%= f.submit "Log in" %>
   </div>
+
+   <%= f.label "- or -" %>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<div class="field col-sm-3" style="margin: 0px 0px 0px -15px;">
+  <%= link_to(user_facebook_omniauth_authorize_path, :class => "btn btn-block btn-social  btn-facebook float-left") do %>
+    <span class="fa fa-facebook"> </span> Sign in with Facebook 
+  <% end %>
+</div>
+

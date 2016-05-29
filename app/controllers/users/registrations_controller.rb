@@ -20,7 +20,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # PUT /resource
   def update
-    super
+    if current_user.role.nil?
+      current_user.update(set_role_params)
+      redirect_to root_path
+    else
+      super
+    end
   end
 
   # DELETE /resource
@@ -39,9 +44,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   protected
   # If you have extra params to permit, append them to the sanitizer.
-   def configure_sign_up_params
-     devise_parameter_sanitizer.permit(:sign_up, keys: [:role])
-   end
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:role])
+  end
+
+  def set_role_params
+    params.require(:user).permit(:role)
+  end
+
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params

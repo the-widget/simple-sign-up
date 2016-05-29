@@ -1,6 +1,5 @@
-- Set up Validations (finished User, and Event)
+
 - Include extra information in join model
 - One class level method (try event participants)
 - Allow login from another service
-- Validation errors
 - 
