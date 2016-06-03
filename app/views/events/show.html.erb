@@ -6,7 +6,7 @@
     <%= link_to("Delete Event", event_path(@event), :method => 'delete', data: {:confirm => "Are you sure you want to do delete this event?"}) %>
   <% end %>
 </div><hr>
-  <strong>Organized By: </strong> <%= @event.organizer.name %><br>
+  <strong class='text-warning'>Organized By: </strong> <text ><%= @event.organizer.name %></text><br>
   <strong>Date: </strong><%= @event.date %><br>
   <strong>From: </strong><%= @event.start_time %> to <%= @event.end_time %> <hr>
 
