@@ -17,7 +17,7 @@ class EventsController < ApplicationController
     if !@event.save 
       render 'new'
     else 
-      redirect_to events_path
+      redirect_to event_path(@event)
     end
   end
 
