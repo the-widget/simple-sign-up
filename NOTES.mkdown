@@ -1,3 +1,2 @@
 - Include extra information in join model (if can)
-- Create Tasks in the New Event form to fulfill requirement
 

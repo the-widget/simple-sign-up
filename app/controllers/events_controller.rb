@@ -14,12 +14,18 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = current_user.events.build(event_params)
-    if !@event.save 
-      render 'new'
-    else 
-      redirect_to event_path(@event)
-    end
+    if empty_task_params_field?
+      @event = current_user.events.build(event_params)
+      if @event.save 
+        redirect_to(event_path(@event))
+      else
+        @event.tasks.build
+        render('new')
+      end
+    else
+      @event = current_user.events.build(event_with_task_params)
+      @event.save ? redirect_to(event_path(@event)) : render('new')
+    end 
   end
 
   def edit
@@ -41,7 +47,16 @@ class EventsController < ApplicationController
   private
 
   def event_params
+    params.require(:event).permit(:title, :description, :date, :start_time, :end_time)
+  end
+
+  def event_with_task_params
     params.require(:event).permit(:title, :description, :date, :start_time, :end_time, tasks_attributes: [:title, :description, :start_time, :end_time, :workers_required, :id])
+  end
+
+  def empty_task_params_field?
+    param = params["event"]["tasks_attributes"]["0"]
+    param["title"].empty? && param["description"].empty? && param["start_time"].empty? && param["end_time"].empty? && param["workers_required"].empty?
   end
 
   def set_event
