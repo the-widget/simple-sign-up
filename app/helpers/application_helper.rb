@@ -17,5 +17,11 @@ module ApplicationHelper
   def spots_to_fill
     task.workers_required - task.users
   end
+
+  def task_styling
+    @task.users.all.count == @task.workers_required ? "class=text-success" : "class=text-danger"
+  end
+
+  
   
 end

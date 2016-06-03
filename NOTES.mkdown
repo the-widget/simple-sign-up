@@ -1,2 +1,6 @@
-- Include extra information in join model
+- Include extra information in join model (if can)
+- Create Tasks in the New Event form to fulfill requirement
+- Create "BACK" button to go from Task to Event
+- Create Organized By:
+- Route to Event#Show after creation
 

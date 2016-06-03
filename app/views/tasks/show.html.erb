@@ -1,0 +1,21 @@
+<div class="text-center">
+  <h1><%= @task.title %></h1> 
+  <% if organizer_permissions? %>
+    <%= link_to("Delete Task", event_task_path, :method => :delete, data: {:confirm => "Are you sure you want to  delete this task?"}) %> |
+    <%= link_to("Edit Task", edit_event_task_path) if organizer_permissions? %> 
+  <% elsif current_user.member? %>
+    <button><%= link_to("Sign Up For This Task", event_task_path, :method => :patch) %></button>
+  <% end %>
+</div> <hr>
+<strong>Workers Required:</strong> <%= @task.workers_required %> <br> <br>
+<strong>Description:</strong> <%= @task.description %> <br /> <br>
+<strong>Time Slot:</strong> <%= @task.start_time %> - <%= @task.end_time %> <br /> <br>
+<strong <%=task_styling%>>Participants: <%= @task.users.all.count %> / <%= @task.workers_required %> </strong> <br />
+<% @users.each do |user| %>
+  <%= user.email %> <br>
+<% end %>
+
+<hr>
+
+
+  

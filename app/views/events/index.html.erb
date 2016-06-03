@@ -1,0 +1,20 @@
+<div class='text-center'>
+  <h1>Events</h1>
+  <% if organizer_permissions? %>
+    <%= link_to("Create New Event", new_event_path)%>
+  <% end %>
+</div> <hr>
+
+<% @events.each do |event| %>
+  <h4><%= link_to(event.title, event_path(event)) %> - (<%= event.date %>) 
+  <% if Task.all_positions_filled?(event.task_ids) %>
+    <text class="text-success">All Positions Filled</text></h4>
+  <% else %>
+    <text class="text-danger"><%= event.positions_remaining(event.task_ids) %> Position(s) To Be Filled</text></h3>
+  <% end %>
+
+  <p><%= truncate event.description.squish, :length => 150, :separator => /\w/, :omission => "..." %></p>
+
+
+  <hr>
+<% end %>

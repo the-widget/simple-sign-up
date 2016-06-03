@@ -1,0 +1,25 @@
+<div class='text-center'>
+  <h1><%= @event.title %></h1>
+  <% if organizer_permissions? %>
+    <%= link_to("Edit Event", edit_event_path(@event)) %> |
+    <%= link_to("Add Task", new_event_task_path(@event)) %> |
+    <%= link_to("Delete Event", event_path(@event), :method => 'delete', data: {:confirm => "Are you sure you want to do delete this event?"}) %>
+  <% end %>
+</div><hr>
+  <strong>Organized By: </strong> <%= @event.organizer.name %><br>
+  <strong>Date: </strong><%= @event.date %><br>
+  <strong>From: </strong><%= @event.start_time %> to <%= @event.end_time %> <hr>
+
+  <strong>Description: </strong><%= @event.description %> <hr>
+  <strong>Tasks:</strong> <br>
+  <% @event.tasks.each do |task| %>
+    <%= link_to task.title, event_task_path(@event, task) %> - <strong <%= task.event_task_styling %>><%= task.positions_available %> position(s) remaining </strong> <br>
+  <% end %> <hr>
+
+  <strong>Participants:</strong>
+  <% @event.participants.each do |user| %>
+    <li><%= user.name %></li>
+  <% end %>
+  <hr>
+
+

@@ -1,6 +1,7 @@
 class Event < ActiveRecord::Base
   has_many :tasks
   belongs_to :user
+  alias_method :organizer, :user
   validates :title, :presence => :true
   validates :description, :presence => :true
   validates :date, :presence => :true

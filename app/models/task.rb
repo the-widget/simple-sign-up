@@ -25,4 +25,8 @@ class Task < ActiveRecord::Base
     self.workers_required - self.users.all.count
   end
 
+  def event_task_styling
+    self.users.all.count == self.workers_required ? "class=text-success" : "class=text-danger"
+  end
+
 end

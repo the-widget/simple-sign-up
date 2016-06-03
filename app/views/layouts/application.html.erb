@@ -20,10 +20,10 @@
       </div>
       <div id="navbar" >
         <ul class="nav navbar-nav">
-          <li><a href= <%= root_path %> >Home</a></li>
+          <li><%= link_to "Home", root_path if !logged_in? %></li>
           <!-- <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li> -->
-          <li><%= link_to("Events", event_index_path)%></li>
+          <li><%= link_to("Events", events_path)%></li>
           <li><%= link_to("Sign Up", new_user_registration_path) if !logged_in?  %></li>
           <li><%= logged_in? ? link_to("Sign Out", destroy_user_session_path, :method => :delete) : link_to("Sign In", new_user_session_path) %></li>
           <li><%= logged_in? && !oauth_login? ? link_to("User Settings", edit_user_registration_path) : "" %></li>

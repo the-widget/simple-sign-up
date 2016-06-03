@@ -14,7 +14,7 @@
 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, placeholder: "email@provider.com" %> 
+    <%= f.text_field :name, autofocus: true, placeholder: "Full Name" %> 
   </div>
 
   <div class="field">
@@ -42,7 +42,7 @@
   <%= f.label "- or -" %>
 <% end %>
 
-<div class="field col-sm-3" style="margin: 0px 0px 0px -15px;">
+<div class="field col-sm-4" style="margin: 0px 0px 0px -15px;">
   <%= link_to(user_facebook_omniauth_authorize_path, :class => "btn btn-block btn-social  btn-facebook ") do %>
     <span class="fa fa-facebook"> </span> Sign up with Facebook 
   <% end %>
