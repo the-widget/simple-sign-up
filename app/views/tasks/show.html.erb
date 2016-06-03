@@ -3,8 +3,10 @@
   <% if organizer_permissions? %>
     <%= link_to("Delete Task", event_task_path, :method => :delete, data: {:confirm => "Are you sure you want to  delete this task?"}) %> |
     <%= link_to("Edit Task", edit_event_task_path) if organizer_permissions? %> 
-  <% elsif current_user.member? %>
+  <% elsif current_user.member? && @task.positions_available > 0 %>
     <button><%= link_to("Sign Up For This Task", event_task_path, :method => :patch) %></button>
+  <% else %>
+    <strong class="text-success"><h3>All Positions Taken</h3></strong>
   <% end %>
 </div> <hr>
 <strong>Workers Required:</strong> <%= @task.workers_required %> <br> <br>

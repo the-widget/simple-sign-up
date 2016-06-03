@@ -8,7 +8,7 @@ class Task < ActiveRecord::Base
   validates :start_time, :presence => :true
   validates :end_time, :presence => :true
   validates :workers_required, :presence => :true
-
+  
   def self.total_tasks
     self.all.count
   end
