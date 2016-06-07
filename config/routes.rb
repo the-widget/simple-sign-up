@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :events do 
     resources :tasks
   end
+  get '/events/:event_id/tasks/:id/set_role' => 'tasks#set_role', as: :set_task_role
   
   root to: "home#index"
   # The priority is based upon order of creation: first created -> highest priority.

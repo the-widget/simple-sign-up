@@ -15,8 +15,12 @@ class TasksController < ApplicationController
     if !@task.save
       render 'new'
     else
-      redirect_to event_path(@event)
+      redirect_to event_task_path(@event, @task)
     end
+  end
+
+  def set_role
+    @task = task
   end
 
   def destroy
@@ -40,10 +44,12 @@ class TasksController < ApplicationController
   end
 
   def sign_up
-    task.users << current_user unless task.users.include?(current_user)
+    @task = task
     set_event
+    task.users << current_user unless task.users.include?(current_user)
+    UserTask.last.update(task_role: params['user']['task_role'])
     flash[:notice] = "Successfully added you to this task."
-    redirect_to event_path(@event)
+    redirect_to event_task_path(@event, @task)
   end
 
   def task
@@ -59,5 +65,7 @@ class TasksController < ApplicationController
   def set_event
     @event = Event.find(params[:event_id])
   end
+
+  
   
 end

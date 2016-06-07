@@ -1,0 +1,16 @@
+<h1>Set Preferred Role</h1>
+<h4>Notice: Your role may be subject to change</h4>
+<%= form_for(@task, url: event_task_path, :method => :patch) do |f| %>
+
+<div class="field">
+    <input id="task_role_supervisor" name="user[task_role]" type="radio" value="supervisor">
+    <label for="task_role_supervisor">Supervisor</label>
+    <input id="task_role_worker" name="user[task_role]" type="radio" value="worker">
+    <label for="task_role_worker">Worker</label><hr>
+</div>
+
+<div class="actions">
+    <%= f.submit "Sign Up For Task" %>
+  </div>
+<% end %>
+

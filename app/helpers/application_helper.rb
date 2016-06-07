@@ -22,6 +22,10 @@ module ApplicationHelper
     @task.users.all.count == @task.workers_required ? "class=text-success" : "class=text-danger"
   end
 
+  def user_task_role(user)
+    UserTask.find_by(user_id: user.id, task_id: @task.id).task_role
+  end
+
   
   
 end

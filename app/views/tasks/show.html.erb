@@ -4,7 +4,7 @@
     <%= link_to("Delete Task", event_task_path, :method => :delete, data: {:confirm => "Are you sure you want to  delete this task?"}) %> |
     <%= link_to("Edit Task", edit_event_task_path) if organizer_permissions? %> 
   <% elsif current_user.member? && @task.positions_available > 0 %>
-    <button><%= link_to("Sign Up For This Task", event_task_path, :method => :patch) %></button>
+    <button><%= link_to("Sign Up For This Task", set_task_role_path) %></button>
   <% else %>
     <strong class="text-success"><h3>All Positions Taken</h3></strong>
   <% end %>
@@ -14,7 +14,7 @@
 <strong>Time Slot:</strong> <%= @task.start_time %> - <%= @task.end_time %> <br /> <br>
 <strong <%=task_styling%>>Participants: <%= @task.users.all.count %> / <%= @task.workers_required %> </strong> <br />
 <% @users.each do |user| %>
-  <%= user.email %> <br>
+  <%= user.email %>  <strong><%= "- " + user_task_role(user).capitalize if user_task_role(user) == "supervisor" %></strong><br>
 <% end %>
 
 <hr>

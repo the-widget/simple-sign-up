@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160529211111) do
+ActiveRecord::Schema.define(version: 20160607210952) do
 
   create_table "events", force: :cascade do |t|
     t.string   "title"
@@ -39,8 +39,9 @@ ActiveRecord::Schema.define(version: 20160529211111) do
   create_table "user_tasks", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "task_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "task_role",  default: "worker"
   end
 
   create_table "users", force: :cascade do |t|
