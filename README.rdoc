@@ -1,13 +1,17 @@
-== Simple Sign Up
+= Simple Sign Up
 
-== H2 Introduction
+== Introduction
 Simple Sign Up, a tool that allows you to easily manage your organizational events, tasks and workers.
 
-== H2 Usage:
+== Usage
+Sign up with a name, email and password or take the simple route by using your Facebook account. Be sure to set your role as an Organizer or Volunteer.
 
-== H2 Contributing:
-- Fork it (https://github.com/the-widget/simple-sign-up/fork)
-- Create your feature branch (git checkout -b my-new-feature)
-- Commit your changes (git commit -am 'Add some feature')
-- Push to the branch (git push origin my-new-feature)
-- Create a new Pull Request
+== Contributing
+1. Fork it (https://github.com/the-widget/simple-sign-up/fork)
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -am 'Add some feature')
+4. Push to the branch (git push origin my-new-feature)
+5. Create a new Pull Request
+
+== License
+This project was created as part of the curriculum of Learn.co which is publicly and freely available under {Learn's Educational Content License}[https://learn.co/content-license].
