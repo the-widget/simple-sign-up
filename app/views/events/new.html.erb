@@ -16,57 +16,7 @@
   </div>
 <% end %>
 <% if logged_in? %>
-  <%= form_for @event, url: {action: "create", method: "post"} do |f| %>
-    <%= f.label :name %> <br>
-    <%= f.text_field :title %> <br>
-    <%= f.label :description %> <br>
-    <%= f.text_area :description %> <br>
-    <%= f.label :date %> <br>
-    <%= f.text_field :date, "data-provide" => 'datepicker' %> <br>
-  <div class="input-group bootstrap-timepicker timepicker">
-    <%= f.label :start_time %> <br>
-    <%= f.text_field :start_time, "class" => "input-small" %> <br>
-    <%= f.label :end_time %> <br>
-    <%= f.text_field :end_time, "class" => "input-small" %> <br>
-    <script type="text/javascript">
-          $('#event_start_time').timepicker({
-            template: 'dropdown',
-            defaultTime: false
-          });
-          $('#event_end_time').timepicker({
-            template: 'dropdown',
-            defaultTime: false
-          });
-      </script>
-  </div>
-<h4>-------------------------</h4>
-  <h4>Create A Task (optional)</h4>
-    <%= f.fields_for :tasks do |task| %>
-      <%= task.label :title %> <br>
-      <%= task.text_field :title %> <br>
-      <%= task.label :description %> <br>
-      <%= task.text_area :description %> <br>
-    <div class="input-group bootstrap-timepicker timepicker">
-      <%= task.label :start_time %> <br>
-      <%= task.text_field :start_time, "class" => "input-small" %> <br>
-      <%= task.label :end_time %> <br>
-      <%= task.text_field :end_time, "class" => "input-small" %> <br>
-      <script type="text/javascript">
-        $('#event_tasks_attributes_0_start_time').timepicker({
-          template: 'dropdown',
-          defaultTime: false
-        });
-        $('#event_tasks_attributes_0_end_time').timepicker({
-          template: 'dropdown',
-          defaultTime: false
-        });
-      </script>
-    </div> <br>
-      <%= task.label :workers_required, "Workers/Volunteers Required" %> <br>
-      <%= task.number_field :workers_required %> <br><br>
-    <% end %> <hr>
-    <%= f.submit "Create Event" %>
-  <% end %>
+  <%= render 'new' %>
 <% else %>
   <p>Please login to create Events</p>
 <% end %>   
