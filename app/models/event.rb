@@ -14,11 +14,19 @@ class Event < ActiveRecord::Base
     self.tasks.update(task)
   end
 
-  def task_ids
-    self.tasks.map do |task|
-      task.id 
-    end
+  def all_positions_filled?
+    self.tasks.map {|task|
+    if task.workers_required == task.users.all.count
+      task.id
+    end}.compact.size == task_ids.size
   end
+
+
+  # def task_ids
+  #   self.tasks.map do |task|
+  #     task.id 
+  #   end
+  # end
 
   def positions_remaining(task_ids)
     task_ids.map { |id|

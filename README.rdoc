@@ -1,28 +1,13 @@
-== README
+== Simple Sign Up
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+== H2 Introduction
+Simple Sign Up, a tool that allows you to easily manage your organizational events, tasks and workers.
 
-Things you may want to cover:
+== H2 Usage:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+== H2 Contributing:
+- Fork it (https://github.com/the-widget/simple-sign-up/fork)
+- Create your feature branch (git checkout -b my-new-feature)
+- Commit your changes (git commit -am 'Add some feature')
+- Push to the branch (git push origin my-new-feature)
+- Create a new Pull Request

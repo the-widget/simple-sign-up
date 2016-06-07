@@ -13,14 +13,6 @@ class Task < ActiveRecord::Base
     self.all.count
   end
 
-  def self.all_positions_filled?(task_ids)
-    task_ids.map {|id|
-    task = Task.find(id);
-    if task.workers_required == task.users.all.count
-      task.id
-    end}.compact.size == task_ids.size
-  end
-
   def positions_available
     self.workers_required - self.users.all.count
   end
