@@ -46,8 +46,7 @@ class TasksController < ApplicationController
   def sign_up
     @task = task
     set_event
-    task.users << current_user unless task.users.include?(current_user)
-    @usertask = UserTask.find_by(user_id: current_user.id, task_id: @task.id)
+    @usertask = task.user_tasks.find_or_create_by(user_id: current_user.id, task_id: @task.id)
     @usertask.update(task_role: params['user']['task_role'])
     flash[:notice] = "Successfully added you to this task."
     redirect_to event_task_path(@event, @task)
