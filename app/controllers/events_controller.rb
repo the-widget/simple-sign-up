@@ -5,7 +5,11 @@ class EventsController < ApplicationController
   end
 
   def show
-    set_event
+    @event = Event.find(params[:id])
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @event}
+    end
   end
 
   def new
