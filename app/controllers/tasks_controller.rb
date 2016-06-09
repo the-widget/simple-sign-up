@@ -2,6 +2,7 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    @users = @task.users
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @task}
