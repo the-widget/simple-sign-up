@@ -1,11 +1,17 @@
 <div class='text-center'>
-  <h1><%= @event.title %></h1>
-  <% if organizer_permissions? %>
-    <%= link_to("Edit Event", edit_event_path(@event)) %> |
-    <%= link_to("Add Task", new_event_task_path(@event)) %> |
-    <%= link_to("Delete Event", event_path(@event), :method => 'delete', data: {:confirm => "Are you sure you want to do delete this event?"}) %>
-  <% end %>
+
+  <h1 class="title"><%= @event.title %></h1>
+
+  <div class="window-nav">
+    <% if organizer_permissions? %>
+      <%= link_to("Edit Event", edit_event_path(@event), :id => 'edit_event') %> |
+      <%= link_to("Add Task", new_event_task_path(@event), :id => 'add_event') %> |
+      <%= link_to("Delete Event", event_path(@event), :id => 'delete_event', :method => 'delete', data: {:confirm => "Are  you sure you want to do delete this event?"}) %>
+    <% end %>
+  </div>
+
 </div><hr>
+
   <strong class='text-warning'>Organized By: </strong> <text ><%= @event.organizer.name %></text><br>
   <strong>Date: </strong><%= @event.date %><br>
   <strong>From: </strong><%= @event.start_time %> to <%= @event.end_time %> <hr>
