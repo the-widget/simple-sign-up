@@ -16,7 +16,7 @@ $(function () {
       this.user = user //Organizer
       this.display_each_task = function(){
         $.each(this.tasks, function(i, task){
-        tasks_html = tasks_html.concat("<a href=/events/" + this.id + "/" + "tasks" + "/" + task.id + ">" + task.title + "</a><br>");
+        tasks_html = tasks_html.concat("<a class='js-showTask' href=/events/" + this.id + "/" + "tasks" + "/" + task.id + " data-id=" + task.id + ">" + task.title + "</a><br>");
         });
       };
       var users = {} //Workers
@@ -51,6 +51,7 @@ $(function () {
       $('.event-show').toggle("hide")
       $('.event-show').replaceWith(showEvent)
       $('#new-event').replaceWith(eventNav)
+      $('.jumbotron').append("<script type='text/javascript' src='assets/tasks.js' charset='utf-8'/>")
 
       $(".js-back").on("click", function(click){
         click.preventDefault();
@@ -59,17 +60,11 @@ $(function () {
         $('.event-show').toggle("hide")
         $(".title").html("Events");
         $('.page-nav').replaceWith(newEvent)
-      });
-
-
-
-      
+      });  
     });
   });
-  
-  
-
 });
+
 
 
 

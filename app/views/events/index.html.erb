@@ -15,9 +15,7 @@
   <% @events.each do |event| %>
     <h4><%= link_to(event.title, event_path(event), :'data-id' => event.id, :class => 'js-showEvent') %> - (<%= event.date %>) 
     <% if event.all_positions_filled? %>
-  
-  <!--    Task.all_positions_filled?(event.task_ids) %>
-   -->    
+     
     <text class="text-success">All Positions Filled</text></h4>
     <% else %>
       <text class="text-danger"><%= event.positions_remaining(event.task_ids) %> Position(s) To Be  Filled</text></h3>
@@ -31,13 +29,5 @@
 </div>
 
 
-<script type="text/javascript" src="assets/event.js" charset="utf-8"/>
+<script type="text/javascript" src="assets/events.js" charset="utf-8"/>
 
-
-
-<!-- $('<a>',{
-    text: 'This is blah',
-    title: 'Blah',
-    href: '#',
-    click: function(){ BlahFunc( options.rowId );return false;}
-}).appendTo('body'); -->
