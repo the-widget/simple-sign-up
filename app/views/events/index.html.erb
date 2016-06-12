@@ -6,7 +6,12 @@
     <% end %>
   </div>
 </div> <hr>
+
+<div class="event-show" style="display: none">
+</div>
+
 <div class="event-index">
+  
   <% @events.each do |event| %>
     <h4><%= link_to(event.title, event_path(event), :'data-id' => event.id, :class => 'js-showEvent') %> - (<%= event.date %>) 
     <% if event.all_positions_filled? %>
@@ -24,6 +29,7 @@
     <hr>
   <% end %>
 </div>
+
 
 <script type="text/javascript" src="assets/event.js" charset="utf-8"/>
 
