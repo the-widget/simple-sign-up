@@ -3,7 +3,10 @@ $(function () {
     click.preventDefault();
     var taskId = parseInt($(click['target']).attr("data-id"));
     var eventId = parseInt($(click['target']).attr("data-eventId"));
+    var eventTitle = ($(click['target']).attr("data-eventTitle"));
+
     var users_html = ""
+    var userList = {} //Workers
 
     function Task(id, title, description, start_time, end_time, workers_required, users){
       this.id = id
@@ -13,13 +16,12 @@ $(function () {
       this.end_time = end_time
       this.workers_required = workers_required
       this.users = users //Workers
-      var userList = {} //Workers
       this.display_each_user = function() {
         $.each(this.users, function(i, user){ 
           userList[user.id] = user.name
         });
         for(var i in userList){ // Loops through the keys in 'userList' to concat
-          users_html = users_html.concat("<li class='users'" + " data-id=" + i + ">" + userList[i])
+          users_html = users_html.concat("<text class='users'" + " data-id=" + i + ">" + userList[i] + "</text><br>")
         };
       };
     };
@@ -28,12 +30,28 @@ $(function () {
     $.get("/events/" + eventId + "/" + "tasks" + "/" + taskId + ".json", function(data) {
       var task = new Task(data['id'], data['title'], data['description'], data['start_time'], data['end_time'], data['workers_required'], data['users']);
       task.display_each_user();
-      var showTask = "<div class='task-show'><strong>Workers Required: </strong>" + task.workers_required + "</div>"
-      var taskNav = "<button><a href='/events/2/tasks/4/set_role'>Sign Up For This Task</a></button>"
 
-      $(".title").html(task['title'])
+      var showTask = "<strong>Workers Required: </strong>" + task.workers_required + "<br><br><strong>Description: </strong>" + task.description + "<br><br><strong>Time Slot: </strong>" + task.start_time + " - " + task.end_time + "<br><br><strong>Participants: " + Object.keys(userList).length + " / " + task.workers_required + "</strong><br>" + users_html + "<hr> <a id='return' href='#' class='js-back'e> Return To Event <a></div>" 
+
+      var taskNav = "<button><a href='/events/2/tasks/4/set_role'>Sign Up For This Task</a></button>"
+      var eventNav = "<div class='page-nav'><a id='edit_event' href='/events/2/edit'>Edit Event</a>" + " | " + "<a id='add_event' href='/events/2/tasks/new'>Add Task</a>" + " | " + "<a id='delete_event' data-confirm='Are you sure you want to do delete this event?' rel='nofollow' data-method='delete' href='/events/2'>Delete Event</a></div>"
+
       $('.event-show').toggle("hide")
-      $('.event-index').after(showTask)
+      $('.task-show').html(showTask)
+      $('.task-show').toggle("hide")
+      $(".title").html(task['title'])
+      $(".page-nav").replaceWith(taskNav)
+      
+
+      $(".js-back").on("click", function(click){
+        click.preventDefault();
+        
+        $('.task-show').toggle("hide")
+        $('.event-show').toggle("hide")
+        $(".title").html(eventTitle);
+        $('.page-nav').replaceWith(eventNav)
+      });
+
       
     });
   });
@@ -53,13 +71,6 @@ $(function () {
 //       $('#new-event').replaceWith(eventNav)
 //       $('.jumbotron').append("<script type='text/javascript' src='assets/tasks.js' charset='utf-8'/>")
 
-//       $(".js-back").on("click", function(click){
-//         click.preventDefault();
-        
-//         $('.event-index').toggle("hide")
-//         $('.event-show').toggle("hide")
-//         $(".title").html("Events");
-//         $('.page-nav').replaceWith(newEvent)
 //       });  
 //     });
 //   });

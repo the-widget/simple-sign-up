@@ -2,6 +2,7 @@ $(function () {
   $(".js-showEvent").on("click", function(click) {
     click.preventDefault();
     var eventId = parseInt($(click['target']).attr("data-id"));
+    var eventTitle = ($(click['target']).attr("data-title"));
     var tasks_html = ""
     var users_html = ""
 
@@ -16,7 +17,7 @@ $(function () {
       this.user = user //Organizer
       this.display_each_task = function(){
         $.each(this.tasks, function(i, task){
-        tasks_html = tasks_html.concat("<a class='js-showTask' href='#'" + "data-id=" + task.id + " data-eventId=" + task.event_id + ">" + task.title + "</a><br>");
+        tasks_html = tasks_html.concat("<a class='js-showTask' href='#'" + "data-id=" + task.id + " data-eventTitle=" + "'" + eventTitle + "'" + " data-eventId=" + task.event_id + ">" + task.title + "</a><br>");
         });
       };
       var users = {} //Workers
