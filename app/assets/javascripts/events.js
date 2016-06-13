@@ -16,7 +16,7 @@ $(function () {
       this.user = user //Organizer
       this.display_each_task = function(){
         $.each(this.tasks, function(i, task){
-        tasks_html = tasks_html.concat("<a class='js-showTask' href=/events/" + this.id + "/" + "tasks" + "/" + task.id + " data-id=" + task.id + ">" + task.title + "</a><br>");
+        tasks_html = tasks_html.concat("<a class='js-showTask' href='#'" + "data-id=" + task.id + " data-eventId=" + task.event_id + ">" + task.title + "</a><br>");
         });
       };
       var users = {} //Workers
@@ -28,7 +28,7 @@ $(function () {
           });
         });
         for(var i in users){ // Loops through the keys in 'users' to concat
-          users_html = users_html.concat("<li class='users'" + "data-id" + ":" + i + ">" + users[i])
+          users_html = users_html.concat("<li class='users'" + "data-id=" + i + ">" + users[i])
         } 
       }
     }
