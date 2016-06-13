@@ -16,3 +16,7 @@
 //= require bootstrap-datepicker
 //= require bootstrap-timepicker
 //= require_tree .
+
+function isEmpty( el ){
+  return !$.trim(el.html());
+};
