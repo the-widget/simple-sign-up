@@ -31,25 +31,26 @@ $(function () {
       var task = new Task(data['id'], data['title'], data['description'], data['start_time'], data['end_time'], data['workers_required'], data['users']);
       task.display_each_user();
 
-      var showTask = "<strong>Workers Required: </strong>" + task.workers_required + "<br><br><strong>Description: </strong>" + task.description + "<br><br><strong>Time Slot: </strong>" + task.start_time + " - " + task.end_time + "<br><br><strong>Participants: " + Object.keys(userList).length + " / " + task.workers_required + "</strong><br>" + users_html + "<hr> <a id='return' href='#' class='js-back'e> Return To Event <a></div>" 
+      var showTask = "<strong>Workers Required: </strong>" + task.workers_required + "<br><br><strong>Description: </strong>" + task.description + "<br><br><strong>Time Slot: </strong>" + task.start_time + " - " + task.end_time + "<br><br><strong>Participants: " + Object.keys(userList).length + " / " + task.workers_required + "</strong><br>" + users_html + "<hr> <a id='return' href='#' class='js-taskBack'e> Return To " + eventTitle + "<a></div>" 
 
       var taskNav = "<button><a href='/events/2/tasks/4/set_role'>Sign Up For This Task</a></button>"
-      var eventNav = "<div class='page-nav'><a id='edit_event' href='/events/2/edit'>Edit Event</a>" + " | " + "<a id='add_event' href='/events/2/tasks/new'>Add Task</a>" + " | " + "<a id='delete_event' data-confirm='Are you sure you want to do delete this event?' rel='nofollow' data-method='delete' href='/events/2'>Delete Event</a></div>"
+      var editTaskNav = "<a data-confirm='Are you sure you want to delete this task?' rel='nofollow' data-method='delete' href='/events/" + eventId + "/tasks/" + taskId + "'>Delete Task</a>" + " | " + "<a href='/events/" + eventId + "/tasks/" + taskId + "/edit'> Edit Task</a>"
+      var eventNav = "<a id='edit_event' href='/events/2/edit'>Edit Event</a>" + " | " + "<a id='add_event' href='/events/2/tasks/new'>Add Task</a>" + " | " + "<a id='delete_event' data-confirm='Are you sure you want to do delete this event?' rel='nofollow' data-method='delete' href='/events/2'>Delete Event</a>"
 
       $('.event-show').toggle("hide")
       $('.task-show').html(showTask)
       $('.task-show').toggle("hide")
       $(".title").html(task['title'])
-      $(".page-nav").replaceWith(taskNav)
+      $(".page-nav").html(editTaskNav)
       
 
-      $(".js-back").on("click", function(click){
+      $(".js-taskBack").on("click", function(click){
         click.preventDefault();
         
         $('.task-show').toggle("hide")
         $('.event-show').toggle("hide")
         $(".title").html(eventTitle);
-        $('.page-nav').replaceWith(eventNav)
+        $('.page-nav').html(eventNav)
       });
 
       
@@ -57,21 +58,3 @@ $(function () {
   });
 });
 
-// var showEvent = "</div><div class='event-show'><strong class='text-warning'>Organized By:</strong> <text>" + event.user.name + "</text><br> <strong>Date: </strong>" + event.date + "<br> <strong>From: </strong>" + event.start_time + " to" + event.end_time + "<hr> <strong>Description: </strong>" + event.description + "<hr> <strong>Tasks:</strong> <br>" + tasks_html + "<br><strong> Participants: </strong><br>" + users_html + "<hr> <a id='return' href='#' class='js-back'e> Return To Events <a></div>"
-
-//       var eventNav = "<div class='page-nav'><a id='edit_event' href='/events/2/edit'>Edit Event</a>" + " | " + "<a id='add_event' href='/events/2/tasks/new'>Add Task</a>" + " | " + "<a id='delete_event' data-confirm='Are you sure you want to do delete this event?' rel='nofollow' data-method='delete' href='/events/2'>Delete Event</a></div>"
-
-//       var newEvent = "<a id='new-event' class='page-nav' href='/events/new'>Create New Event</a>"
-      
-//       $(".title").html(event['title']);
-//       //$(".page-nav").html(); WORK ON PAGE NAV
-//       $('.event-index').toggle("hide")
-//       $('.event-show').toggle("hide")
-//       $('.event-show').replaceWith(showEvent)
-//       $('#new-event').replaceWith(eventNav)
-//       $('.jumbotron').append("<script type='text/javascript' src='assets/tasks.js' charset='utf-8'/>")
-
-//       });  
-//     });
-//   });
-// });
