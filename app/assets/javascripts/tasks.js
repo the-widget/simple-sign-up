@@ -1,4 +1,5 @@
 $(function () {
+
   $(".js-showTask").on("click", function(click) {
     click.preventDefault();
     var taskId = parseInt($(click['target']).attr("data-id"));
@@ -26,7 +27,6 @@ $(function () {
       };
     };
 
-    
     $.get("/events/" + eventId + "/" + "tasks" + "/" + taskId + ".json", function(data) {
       var task = new Task(data['id'], data['title'], data['description'], data['start_time'], data['end_time'], data['workers_required'], data['users']);
       task.display_each_user();
@@ -36,6 +36,7 @@ $(function () {
       var taskNav = "<button><a href='/events/" + eventId + "/tasks/" + taskId + "/set_role'>Sign Up For This Task</a></button>";
       var editTaskNav = "<a id='delete-task' data-confirm='Are you sure you want to delete this task?' rel='nofollow' data-method='delete' href='/events/" + eventId + "/tasks/" + taskId + "'>Delete Task</a>" + " | " + "<a href='/events/" + eventId + "/tasks/" + taskId + "/edit'> Edit Task</a>";
       var eventNav = "<a id='edit_event' href='/events/" + eventId + "/edit'>Edit Event</a>" + " | " + "<a id='add_event' href='/events/" + eventId + "/tasks/new'>Add Task</a>" + " | " + "<a id='delete_event' data-confirm='Are you sure you want to do delete this event?' rel='nofollow' data-method='delete' href='/events/" + eventId + "'>Delete Event</a>";
+
       //PERMISSIONS
       if (isEmpty($('.page-nav'))) {
         $('.page-nav').html(taskNav);
@@ -54,6 +55,7 @@ $(function () {
         $('.task-show').toggle("hide");
         $('.event-show').toggle("hide");
         $(".title").html(eventTitle);
+
         //PERMISSIONS
         if (isEmpty($('#delete-task'))) {
           $('.page-nav').empty();
@@ -61,9 +63,7 @@ $(function () {
           $('.page-nav').html(eventNav);
         };
       });
-
       
     });
   });
 });
-

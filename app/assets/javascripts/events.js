@@ -45,6 +45,7 @@ $(function () {
       var showEvent = "</div><strong class='text-warning'>Organized By:</strong> <text>" + event.user.name + "</text><br> <strong>Date: </strong>" + event.date + "<br> <strong>From: </strong>" + event.start_time + " to" + event.end_time + "<hr> <strong>Description: </strong>" + event.description + "<hr> <strong>Tasks:</strong> <br>" + tasks_html + "<br><strong> Participants: </strong><br>" + users_html + "</li>" + "<hr> <a id='return' href='#' class='js-back'> Return To Events </a>"
       var eventNav = "<a id='edit_event' href='/events/" + eventId + "/edit'>Edit Event</a>" + " | " + "<a id='add_event' href='/events/" + eventId + "/tasks/new'>Add Task</a>" + " | " + "<a id='delete_event' data-confirm='Are you sure you want to do delete this event?' rel='nofollow' data-method='delete' href='/events/" + eventId + "'>Delete Event</a>"
       var newEvent = "<a id='new-event' class='page-nav' href='/events/new'>Create New Event</a>"
+      
       //PERMISSIONS
       if (!isEmpty($('.page-nav'))) {
         $('.page-nav').html(eventNav);
@@ -54,7 +55,6 @@ $(function () {
         $('.alert').remove();
       };
 
-      
       $(".title").html(event['title']);
       $('.event-index').toggle("hide");
       $('.event-show').toggle("hide");
@@ -66,6 +66,7 @@ $(function () {
         $('.event-index').toggle("hide");
         $('.event-show').toggle("hide");
         $(".title").html("Events");
+
         //PERMISSIONS
         if (!isEmpty($('.page-nav'))) {
           $('.page-nav').html(newEvent);
@@ -74,7 +75,3 @@ $(function () {
     });
   });
 });
-
-
-
-
