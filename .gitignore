@@ -1,0 +1,6 @@
+development.sqlite3
+/dev
+/db
+/log
+/tmp
+.NOTES.mkdown

@@ -18,7 +18,7 @@ $(function () {
       this.user = user //Organizer
       this.display_each_task = function(){
         $.each(this.tasks, function(i, task){
-        tasks_html = tasks_html.concat("<a class='js-showTask' href='#'" + "data-id=" + task.id + " data-eventTitle=" + "'" + eventTitle + "'" + " data-eventId=" + task.event_id + ">" + task.title + "</a><br>");
+        tasks_html = tasks_html.concat("<a class='js-showTask' href=" + this.id + "/tasks/" + task.id + " " + "data-id=" + task.id + " data-eventTitle=" + "'" + eventTitle + "'" + " data-eventId=" + task.event_id + ">" + task.title + "</a><br>");
         });
       };
       var users = {} //Workers
